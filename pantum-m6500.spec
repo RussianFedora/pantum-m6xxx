@@ -75,5 +75,5 @@ popd
 %{_udevrulesdir}/60-pantum_mfp.rules
 
 %changelog
-* Sun Feb 11 2017 Vitaly Zaitsev <vitaly@easycoding.org> - 1.4.0-1
+* Sun Feb 11 2018 Vitaly Zaitsev <vitaly@easycoding.org> - 1.4.0-1
 - Use alternatives to provide /usr/bin/sublime_text binary.
