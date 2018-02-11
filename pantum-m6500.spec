@@ -25,17 +25,16 @@ Summary: Pantum M6500 Series CUPS drivers
 
 # Extracting DEB packages:
 pushd Resources
+    mkdir {driver,sane}
     %ifarch x86_64
         ar p Pantum-M6500-Series-3.0.x86_64.deb data.tar.gz > %{name}-%{version}-driver.tar.gz
-        mkdir driver
-        tar -xf %{name}-%{version}-driver.tar.gz -C driver
-        rm -f *.tar.gz
+        ar p Pantum-M6500-Series-Sane-3.7.x86_64.deb data.tar.gz > %{name}-%{version}-sane.tar.gz
     %else
         ar p Pantum-M6500-Series-3.0.i386.deb data.tar.gz > %{name}-%{version}-driver.tar.gz
-        mkdir driver
-        tar -xf %{name}-%{version}-driver.tar.gz -C driver
-        rm -f *.tar.gz
+        ar p Pantum-M6500-Series-Sane-3.7.i386.deb data.tar.gz > %{name}-%{version}-sane.tar.gz
     %endif
+    tar -xf %{name}-%{version}-driver.tar.gz -C driver
+    tar -xf %{name}-%{version}-sane.tar.gz -C sane
 popd
 
 %build
