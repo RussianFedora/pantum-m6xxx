@@ -34,7 +34,7 @@ Summary: Pantum M6500 Series Sane drivers
 %prep
 %setup -q -n ADF_LinuxInstaller
 
-# Extracting DEB packages:
+# Extracting DEB packages...
 pushd Resources
     mkdir {driver,sane}
     %ifarch x86_64
@@ -47,6 +47,9 @@ pushd Resources
     tar -xf %{name}-%{version}-driver.tar.gz -C driver
     tar -xf %{name}-%{version}-sane.tar.gz -C sane
 popd
+
+# Fix W: wrong-file-end-of-line-encoding...
+sed -i -e "s,\r,," Resources/locale/en_US.UTF-8/license.txt
 
 %build
 # Do nothing...
