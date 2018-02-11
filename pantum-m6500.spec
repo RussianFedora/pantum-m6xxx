@@ -1,5 +1,4 @@
 %global debug_package %{nil}
-%global tgzdir ADF_LinuxInstaller
 
 Name: pantum-m6xxx
 Version: 1.4.0
@@ -27,7 +26,7 @@ Summary: Pantum M6500 Series Sane drivers
 %{summary}.
 
 %prep
-%setup -q -n %{tgzdir}
+%setup -q -n ADF_LinuxInstaller
 
 # Extracting DEB packages:
 pushd Resources
