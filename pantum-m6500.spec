@@ -5,6 +5,10 @@ Version: 1.4.0
 Release: 1%{?dist}
 Summary: Pantum M6500 Series drivers
 
+# We use mirror, because official website is always down.
+# Don't forget to check md5/sha256 sum of this file:
+# * MD5: 9e9d93b83e8e78cd99f8db0a35cc422a;
+# * SHA256: 27115208c28592ee5aa5628e60400100605577263e850e55b9101047f9c194c4.
 Source0: https://www.prink.it/images/FILES/IT/driver/Pantum-M6200-M6500-M6550-M6600-MS6000-Series-LINUX-Driver-V1-4-0-tar.gz
 
 URL: http://pantum.com/
