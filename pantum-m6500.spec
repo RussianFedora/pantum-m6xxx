@@ -14,10 +14,16 @@ License: Proprietary
 %package cups
 Summary: Pantum M6500 Series CUPS drivers
 
+%package sane
+Summary: Pantum M6500 Series Sane drivers
+
 %description
 %{summary}.
 
 %description cups
+%{summary}.
+
+%description sane
 %{summary}.
 
 %prep
@@ -41,15 +47,27 @@ popd
 # Do nothing...
 
 %install
-# Installing executables...
+# Installing CUPS driver...
 pushd Resources/driver
     mkdir -p %{buildroot}%{_usr}/lib/cups/filter
     install -m 0755 -p usr/lib/cups/filter/ptm6500Filter %{buildroot}%{_usr}/lib/cups/filter
 popd
 
+# Installing Sane driver...
+pushd Resources/sane
+    mkdir -p %{buildroot}%{_sysconfdir}/sane.d/dll.d
+    find etc/sane.d -maxdepth 1 -type f -name "*.conf" -exec install -m 0644 -p '{}' %{buildroot}%{_sysconfdir}/sane.d \;
+    find etc/sane.d/dll.d -maxdepth 1 -type f -name "*" -exec install -m 0644 -p '{}' %{buildroot}%{_sysconfdir}/sane.d/dll.d \;
+popd
+
 %files cups
 %doc Resources/locale/en_US.UTF-8/license.txt
 %{_usr}/lib/cups/filter/ptm6500Filter
+
+%files sane
+%doc Resources/locale/en_US.UTF-8/license.txt
+%{_sysconfdir}/sane.d/*.conf
+%{_sysconfdir}/sane.d/dll.d/*
 
 %changelog
 * Sun Feb 11 2017 Vitaly Zaitsev <vitaly@easycoding.org> - 1.4.0-1
