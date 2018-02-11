@@ -58,6 +58,10 @@ pushd Resources/sane
     mkdir -p %{buildroot}%{_sysconfdir}/sane.d/dll.d
     find etc/sane.d -maxdepth 1 -type f -name "*.conf" -exec install -m 0644 -p '{}' %{buildroot}%{_sysconfdir}/sane.d \;
     find etc/sane.d/dll.d -maxdepth 1 -type f -name "*" -exec install -m 0644 -p '{}' %{buildroot}%{_sysconfdir}/sane.d/dll.d \;
+    mkdir -p %{buildroot}%{_udevrulesdir}
+    install -m 0644 -p etc/udev/rules.d/60-pantum_mfp.rules %{buildroot}%{_udevrulesdir}
+    mkdir -p %{buildroot}%{_libdir}/sane
+    find usr/lib/sane -maxdepth 1 -type f -name "*.so.*" -exec install -m 0755 -p '{}' %{buildroot}%{_libdir}/sane \;
 popd
 
 %files cups
@@ -66,8 +70,10 @@ popd
 
 %files sane
 %doc Resources/locale/en_US.UTF-8/license.txt
+%{_libdir}/sane/*.so.*
 %{_sysconfdir}/sane.d/*.conf
 %{_sysconfdir}/sane.d/dll.d/*
+%{_udevrulesdir}/60-pantum_mfp.rules
 
 %changelog
 * Sun Feb 11 2017 Vitaly Zaitsev <vitaly@easycoding.org> - 1.4.0-1
