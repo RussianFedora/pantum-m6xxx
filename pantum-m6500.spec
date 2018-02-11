@@ -6,7 +6,7 @@ Version: 3.0
 Release: 1%{?dist}
 Summary: Pantum M6500 Series drivers
 
-Source0: Pantum-M6200-M6500-M6550-M6600-MS6000-Series-LINUX-Driver-V1-4-0-tar.gz
+Source0: https://www.prink.it/images/FILES/IT/driver/Pantum-M6200-M6500-M6550-M6600-MS6000-Series-LINUX-Driver-V1-4-0-tar.gz
 
 URL: http://pantum.com/
 License: Proprietary
