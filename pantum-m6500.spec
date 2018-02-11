@@ -76,4 +76,4 @@ popd
 
 %changelog
 * Sun Feb 11 2018 Vitaly Zaitsev <vitaly@easycoding.org> - 1.4.0-1
-- Use alternatives to provide /usr/bin/sublime_text binary.
+- Initial SPEC release.
