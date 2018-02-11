@@ -2,7 +2,7 @@
 %global tgzdir ADF_LinuxInstaller
 
 Name: pantum-m6xxx
-Version: 3.0
+Version: 1.4.0
 Release: 1%{?dist}
 Summary: Pantum M6500 Series drivers
 
@@ -53,5 +53,5 @@ popd
 %{_usr}/lib/cups/filter/ptm6500Filter
 
 %changelog
-* Sat Oct 28 2017 Vitaly Zaitsev <vitaly@easycoding.org> - 3.0.3143-2
+* Sun Feb 11 2017 Vitaly Zaitsev <vitaly@easycoding.org> - 1.4.0-1
 - Use alternatives to provide /usr/bin/sublime_text binary.
