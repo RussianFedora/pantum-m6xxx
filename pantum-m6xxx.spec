@@ -73,11 +73,11 @@ pushd Resources/sane
 popd
 
 %files cups
-%doc Resources/locale/en_US.UTF-8/license.txt
+%license Resources/locale/en_US.UTF-8/license.txt
 %{_usr}/lib/cups/filter/ptm6500Filter
 
 %files sane
-%doc Resources/locale/en_US.UTF-8/license.txt
+%license Resources/locale/en_US.UTF-8/license.txt
 %{_libdir}/sane/*.so.*
 %{_sysconfdir}/sane.d/*.conf
 %{_sysconfdir}/sane.d/dll.d/*
