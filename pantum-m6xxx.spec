@@ -15,8 +15,8 @@ URL: http://pantum.com/
 License: Proprietary
 BuildRequires: systemd-udev
 BuildRequires: python3-cups
+BuildRequires: cups-devel
 BuildRequires: binutils
-BuildRequires: cups
 
 %package cups
 Summary: Pantum M6500 Series CUPS drivers
@@ -61,8 +61,8 @@ sed -i -e "s,\r,," Resources/locale/en_US.UTF-8/license.txt
 %install
 # Installing CUPS driver...
 pushd Resources/driver
-    mkdir -p %{buildroot}%{_usr}/lib/cups/filter
-    install -m 0755 -p usr/lib/cups/filter/ptm6500Filter %{buildroot}%{_usr}/lib/cups/filter
+    mkdir -p %{buildroot}%{_cups_serverbin}/filter
+    install -m 0755 -p usr/lib/cups/filter/ptm6500Filter %{buildroot}%{_cups_serverbin}/filter
     mkdir -p %{buildroot}%{_datadir}/cups/model/Pantum
     find usr/share/cups/model/Pantum -maxdepth 1 -type f -name "*.ppd" -exec install -m 0644 -p '{}' %{buildroot}%{_datadir}/cups/model/Pantum \;
 popd
@@ -80,7 +80,7 @@ popd
 
 %files cups
 %license Resources/locale/en_US.UTF-8/license.txt
-%{_usr}/lib/cups/filter/ptm6500Filter
+%{_cups_serverbin}/filter/ptm6500Filter
 %{_datadir}/cups/model/Pantum
 
 %files sane
