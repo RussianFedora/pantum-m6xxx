@@ -2,7 +2,7 @@
 
 Name: pantum-m6xxx
 Version: 1.4.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Pantum M6500 Series drivers
 
 # We use mirror, because official website is always down.
@@ -87,5 +87,8 @@ popd
 %{_udevrulesdir}/60-pantum_mfp.rules
 
 %changelog
+* Tue Feb 13 2018 Vitaly Zaitsev <vitaly@easycoding.org> - 1.4.0-2
+- Added missing ppd files for cups subpackage.
+
 * Sun Feb 11 2018 Vitaly Zaitsev <vitaly@easycoding.org> - 1.4.0-1
 - Initial SPEC release.
