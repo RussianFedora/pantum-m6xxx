@@ -18,9 +18,11 @@ BuildRequires: binutils
 
 %package cups
 Summary: Pantum M6500 Series CUPS drivers
+Requires: cups%{?_isa}
 
 %package sane
 Summary: Pantum M6500 Series Sane drivers
+Requires: sane%{?_isa}
 
 %description
 %{summary}.
