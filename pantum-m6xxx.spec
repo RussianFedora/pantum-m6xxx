@@ -22,7 +22,7 @@ Requires: cups%{?_isa}
 
 %package sane
 Summary: Pantum M6500 Series Sane drivers
-Requires: sane%{?_isa}
+Requires: sane-backends%{?_isa}
 
 %description
 %{summary}.
