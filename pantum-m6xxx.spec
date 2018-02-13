@@ -14,7 +14,9 @@ Source0: https://www.prink.it/images/FILES/IT/driver/Pantum-M6200-M6500-M6550-M6
 URL: http://pantum.com/
 License: Proprietary
 BuildRequires: systemd-udev
+BuildRequires: python3-cups
 BuildRequires: binutils
+BuildRequires: cups
 
 %package cups
 Summary: Pantum M6500 Series CUPS drivers
