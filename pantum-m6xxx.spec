@@ -83,10 +83,10 @@ popd
 
 %files sane
 %license Resources/locale/en_US.UTF-8/license.txt
-%{_libdir}/sane/*.so.*
-%{_sysconfdir}/sane.d/*.conf
-%{_sysconfdir}/sane.d/dll.d/*
+%config(noreplace) %{_sysconfdir}/sane.d/*.conf
+%config(noreplace) %{_sysconfdir}/sane.d/dll.d/*
 %{_udevrulesdir}/60-pantum_mfp.rules
+%{_libdir}/sane/*.so.*
 
 %changelog
 * Tue Feb 13 2018 Vitaly Zaitsev <vitaly@easycoding.org> - 1.4.0-2
