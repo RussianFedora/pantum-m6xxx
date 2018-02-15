@@ -2,7 +2,7 @@
 
 Name: pantum-m6xxx
 Version: 1.4.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Pantum M6500 Series drivers
 
 # We use mirror, because official website is always down.
@@ -14,13 +14,17 @@ Source0: https://www.prink.it/images/FILES/IT/driver/Pantum-M6200-M6500-M6550-M6
 URL: http://pantum.com/
 License: Proprietary
 BuildRequires: systemd-udev
+BuildRequires: python3-cups
+BuildRequires: cups-devel
 BuildRequires: binutils
 
 %package cups
 Summary: Pantum M6500 Series CUPS drivers
+Requires: cups%{?_isa}
 
 %package sane
 Summary: Pantum M6500 Series Sane drivers
+Requires: sane-backends%{?_isa}
 
 %description
 %{summary}.
@@ -57,8 +61,10 @@ sed -i -e "s,\r,," Resources/locale/en_US.UTF-8/license.txt
 %install
 # Installing CUPS driver...
 pushd Resources/driver
-    mkdir -p %{buildroot}%{_usr}/lib/cups/filter
-    install -m 0755 -p usr/lib/cups/filter/ptm6500Filter %{buildroot}%{_usr}/lib/cups/filter
+    mkdir -p %{buildroot}%{_cups_serverbin}/filter
+    install -m 0755 -p usr/lib/cups/filter/ptm6500Filter %{buildroot}%{_cups_serverbin}/filter
+    mkdir -p %{buildroot}%{_datadir}/cups/model/Pantum
+    find usr/share/cups/model/Pantum -maxdepth 1 -type f -name "*.ppd" -exec install -m 0644 -p '{}' %{buildroot}%{_datadir}/cups/model/Pantum \;
 popd
 
 # Installing Sane driver...
@@ -73,16 +79,20 @@ pushd Resources/sane
 popd
 
 %files cups
-%doc Resources/locale/en_US.UTF-8/license.txt
-%{_usr}/lib/cups/filter/ptm6500Filter
+%license Resources/locale/en_US.UTF-8/license.txt
+%{_cups_serverbin}/filter/ptm6500Filter
+%{_datadir}/cups/model/Pantum
 
 %files sane
-%doc Resources/locale/en_US.UTF-8/license.txt
-%{_libdir}/sane/*.so.*
-%{_sysconfdir}/sane.d/*.conf
-%{_sysconfdir}/sane.d/dll.d/*
+%license Resources/locale/en_US.UTF-8/license.txt
+%config(noreplace) %{_sysconfdir}/sane.d/*.conf
+%config(noreplace) %{_sysconfdir}/sane.d/dll.d/*
 %{_udevrulesdir}/60-pantum_mfp.rules
+%{_libdir}/sane/*.so.*
 
 %changelog
+* Tue Feb 13 2018 Vitaly Zaitsev <vitaly@easycoding.org> - 1.4.0-2
+- Added missing ppd files for cups subpackage.
+
 * Sun Feb 11 2018 Vitaly Zaitsev <vitaly@easycoding.org> - 1.4.0-1
 - Initial SPEC release.
